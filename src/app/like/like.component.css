@@ -1,0 +1,9 @@
+.glyphicon {
+    color: #CCC;
+}
+.glyphicon:hover {
+    cursor: pointer;
+}
+.glyphicon.active {
+    color: deeppink;
+}

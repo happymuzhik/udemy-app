@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="heading">
+    <span>{{ header }}</span>
+    <span class="glyphicon toggle"
+          [ngClass]="{
+            'glyphicon-chevron-up': isOpen,
+            'glyphicon-chevron-down': !isOpen
+          }"
+          [ngStyle]="{'float': 'right'}"
+          (click)="toggle()"
+    ></span>
+  </div>  
+  <div class="body" *ngIf="isOpen">
+      <hr>
+    <ng-content></ng-content>
+  </div>
+</div>
