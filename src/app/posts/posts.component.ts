@@ -9,18 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class PostsComponent implements OnInit {
 
   posts: Post[];
+  error = false;
 
   constructor(private service: PostService) { }
 
   ngOnInit() {
+    this.error = false;
     this.service.getPosts()
-      .subscribe( response => this.posts = response.json().map( r => new Post(r.title, r.id) ));
+      .subscribe( response => this.posts = response.json().map( r => new Post(r.title, r.id) ),
+                  error => this.error = true);
   }
 
   deletePost(post) {
     const index = this.posts.indexOf(post);
+    this.error = false;
     this.service.deletePost(post.id)
-      .subscribe( response => this.posts.splice(index, 1));
+      .subscribe( response => this.posts.splice(index, 1),
+                  error => this.error = true);
   }
 
 }
