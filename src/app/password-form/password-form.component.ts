@@ -11,11 +11,9 @@ export class PasswordFormComponent {
 
   form = new FormGroup({
     old_pass: new FormControl('', Validators.required,  CustomValidators.checkPass),
-    new_pass_group: new FormGroup({
-      new_pass: new FormControl('', Validators.required),
-      confirm_pass: new FormControl('', [Validators.required])
-    }, CustomValidators.checkConfirmPass)
-  });
+    new_pass: new FormControl('', Validators.required),
+    confirm_pass: new FormControl('', [Validators.required])
+  }, CustomValidators.checkConfirmPass);
 
   constructor() { }
 
@@ -24,15 +22,11 @@ export class PasswordFormComponent {
   }
 
   get new_pass(){
-    return this.form.get('new_pass_group.new_pass');
+    return this.form.get('new_pass');
   }
 
   get confirm_pass(){
-    return this.form.get('new_pass_group.confirm_pass');
-  }
-
-  get new_pass_group(){
-    return this.form.get('new_pass_group');
+    return this.form.get('confirm_pass');
   }
 
   submit(){
