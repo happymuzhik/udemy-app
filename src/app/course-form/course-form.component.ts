@@ -15,7 +15,7 @@ export class CourseFormComponent {
 
   constructor() { }
 
-  submit(f){
+  submit(f) {
     console.log(f);
   }
 
