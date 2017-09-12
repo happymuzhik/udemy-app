@@ -14,7 +14,7 @@ export class ZippyComponent {
     this.isOpen = false;
   }
 
-  toggle(){
+  toggle() {
     this.isOpen = !this.isOpen;
   }
 
