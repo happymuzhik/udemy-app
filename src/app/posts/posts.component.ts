@@ -1,4 +1,4 @@
-import { Post, PostService } from './../services/post.service';
+import { Post, PostService, AppError } from './../services/post.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,6 +10,7 @@ export class PostsComponent implements OnInit {
 
   posts: Post[];
   error = false;
+  errorText = '';
 
   constructor(private service: PostService) { }
 
@@ -17,7 +18,7 @@ export class PostsComponent implements OnInit {
     this.error = false;
     this.service.getPosts()
       .subscribe( response => this.posts = response.json().map( r => new Post(r.title, r.id) ),
-                  error => this.error = true);
+                  (error: AppError) => this.errorHander(error));
   }
 
   deletePost(post) {
@@ -25,7 +26,12 @@ export class PostsComponent implements OnInit {
     this.error = false;
     this.service.deletePost(post.id)
       .subscribe( response => this.posts.splice(index, 1),
-                  error => this.error = true);
+                  (error: AppError) => this.errorHander(error));
+  }
+
+  errorHander(error: AppError) {
+    this.error = true;
+    this.errorText = error.text;
   }
 
 }
