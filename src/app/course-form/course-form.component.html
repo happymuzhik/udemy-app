@@ -1,0 +1,56 @@
+<div>
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+      <div>
+        <input
+          class="form-control"
+          name="name"
+          ngModel
+          #name="ngModel"
+          required
+          minlength="5"
+          type="text"/>
+      </div>
+      <div *ngIf="name.touched && !name.valid">
+        <div *ngIf="name.errors?.minlength">
+            Name length must be grater then {{ name.errors.minlength.requiredLength }}!
+        </div>
+        <div *ngIf="name.errors?.required">
+            Name is required!
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+        <select
+        class="form-control"
+        name="category"
+        ngModel
+        #category="ngModel"
+        required
+        type="text">
+        <option value="">No value</option>
+        <option *ngFor="let category of categories" value="category.id">{{ category.name }}</option>
+      </select>
+      </div>
+      <div *ngIf="category.touched && !category.valid">
+          Select category!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="hasGuarantee">
+          <input
+            id="hasGuarantee"
+            name="hasGuarantee"
+            ngModel
+            #hasGuarantee="ngModel"
+            type="checkbox"/>
+          30-day money back guarantee
+      </label>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+    </div>
+    <div class="form-group">{{ f.value | json }}</div>
+  </form>
+</div>

@@ -1,0 +1,7 @@
+form{
+    padding: 10px;
+    margin: 20px;
+}
+.form-control.ng-invalid.ng-touched {
+    border: 1px solid #F40;
+}
