@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
@@ -32,22 +33,25 @@ export class PostService {
 
   constructor(private http: Http) { }
 
-  getPosts(){
+  getPosts() {
     return this.http.get(this.URL)
+      .map( response => response.json() )
       .catch((error: Response) => {
         return Observable.throw(new AppError(error));
       });
   }
 
-  deletePost(id){
+  deletePost(id) {
     return this.http.delete(this.URL + '/' + id)
+      .map( response => response.json() )
       .catch((error: Response) => {
         return Observable.throw(new AppError(error));
       });
   }
 
-  patchPost(post){
+  patchPost(post) {
     return this.http.patch(this.URL + '/' + post.id, post)
+      .map( response => response.json() )
       .catch((error: Response) => {
         return Observable.throw(new AppError(error));
       });

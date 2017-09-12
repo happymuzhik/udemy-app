@@ -17,7 +17,7 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.error = false;
     this.service.getPosts()
-      .subscribe( response => this.posts = response.json().map( r => new Post(r.title, r.id) ),
+      .subscribe( response => this.posts = response.map( r => new Post(r.title, r.id) ),
                   (error: AppError) => this.errorHander(error));
   }
 
