@@ -5,3 +5,15 @@ ul li {
     list-style: none;
     cursor: pointer;
 }
+.avatar {
+    width: 80px;
+    height: 80px;
+}
+.avatar img {
+    width: 100%;
+    border-radius: 100%;
+}
+.container {
+    height: 100px;
+    margin-bottom: 20px;
+}

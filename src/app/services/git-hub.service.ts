@@ -17,10 +17,8 @@ export class GitHubService {
   constructor(private http: Http) { }
 
   getFollowers() {
-    let headers = new Headers();
-    headers.append('X-RateLimit-Reset', (new Date(1372700873 * 1000)).getTime().toString());
-    let options = new RequestOptions({ headers: headers });
-    console.log(headers)
+    const options = new RequestOptions({ headers: new Headers() });
+    options.headers.set('If-None-Match', '6d19faa2a42cdd1623aac3ddadf0ba6c')
     return this.http.get(this.URL, options)
       .map( response => response.json() );
   }

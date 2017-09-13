@@ -2,9 +2,22 @@
     <div class="panel-heading">Posts</div>
     <div class="panel-body">
       <ul>
-        <li *ngFor="let follower of followers">
-          <span>{{ follower.id }}. </span>
-          <span>{{ follower.title }}</span>
+        <li *ngFor="let f of followers">
+          <div class="container">
+            <div class="row">
+              <div class="col col-sm-4 col-md-4 col-lg-4">
+                <div class="avatar">
+                  <img [src]="f.avatar_url" alt="">
+                </div>
+              </div>
+              <div class="col col-sm-8 col-md-8 col-lg-8">
+                <h2>{{ f.login }}</h2>
+                <div>
+                  <a [href]="f.html_url" target="_blank"></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
